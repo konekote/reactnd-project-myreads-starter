@@ -15,6 +15,8 @@ class BooksApp extends React.Component {
      * pages, as well as provide a good URL they can bookmark and share.
      */
     books: [],
+    query: '',
+    results: []
   }
 
   componentDidMount() {
@@ -23,8 +25,17 @@ class BooksApp extends React.Component {
     })
   }
 
-  render() {
+  updateQueryResults = (query) => {
+    this.setState({ query: query.trim() });
+    BooksAPI.search(query).then((results) => {
+      this.setState({ results });      
+    });
+  }
+
+    render() {
     const { books } = this.state;
+    const { query } = this.state;
+    const { results } = this.state;
     return (
       <div className="app">
         <Route exact path="/" render={() => (
@@ -40,7 +51,15 @@ class BooksApp extends React.Component {
             </div>
           </div>
         )} />
-        <Route path="/search" component={Search} />
+        <Route path="/search" render={() => (
+          <Search 
+            query={query}
+            results={results}
+            onUpdateQueryResults={(query) => {
+              this.updateQueryResults(query)
+            }}
+            />
+        )}/>
       </div>
     )
   }
