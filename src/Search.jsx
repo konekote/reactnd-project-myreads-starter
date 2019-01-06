@@ -36,7 +36,7 @@ export default class Search extends React.Component {
                                 <Book
                                     bookCoverUrl={`url("${book.imageLinks.smallThumbnail}")`}
                                     bookTitle={book.title}
-                                    bookAuthors={book.authors.join(', ')} />
+                                    bookAuthors={book.authors ? book.authors.join(', ') : ''} />
                             </li>
                         ))}
                     </ol>
