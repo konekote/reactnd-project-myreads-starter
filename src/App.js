@@ -48,7 +48,8 @@ class BooksApp extends React.Component {
       this.state.books.push(movedBook);      
     }
     movedBook.shelf = e.value;
-    this.setState({ books: this.state.books })
+    this.setState({ books: this.state.books });
+    BooksAPI.update(movedBook, e.value);
   }
 
     render() {
