@@ -5,8 +5,7 @@ import Book from './Book'
 export default class Search extends React.Component {
 
     render() {
-        const { query } = this.props;
-        const { results } = this.props;
+        const { query, results, displayClick } = this.props;
         return (
             <div className="search-books">
                 <div className="search-books-bar">
@@ -36,7 +35,10 @@ export default class Search extends React.Component {
                                 <Book
                                     bookCoverUrl={`url("${book.imageLinks.smallThumbnail}")`}
                                     bookTitle={book.title}
-                                    bookAuthors={book.authors ? book.authors.join(', ') : ''} />
+                                    bookId={book.id}
+                                    bookAuthors={book.authors ? book.authors.join(', ') : ''}
+                                    currentShelf={book.shelf}
+                                    displayClick={displayClick} />
                             </li>
                         ))}
                     </ol>

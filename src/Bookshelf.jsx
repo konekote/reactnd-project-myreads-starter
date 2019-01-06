@@ -3,7 +3,7 @@ import Book from './Book'
 
 export default class Bookshelf extends React.Component {
     render() {
-        const { title, books } = this.props;
+        const { title, books, displayClick } = this.props;
         return (
             <div className="bookshelf">
                 <h2 className="bookshelf-title">{title}</h2>
@@ -14,7 +14,10 @@ export default class Bookshelf extends React.Component {
                                 <Book
                                     bookCoverUrl={`url("${book.imageLinks.smallThumbnail}")`}
                                     bookTitle={book.title}
-                                    bookAuthors={book.authors.join(', ')} />
+                                    bookAuthors={book.authors ? book.authors.join(', ') : ''} 
+                                    bookId={book.id}
+                                    displayClick={displayClick}
+                                    currentShelf={book.shelf} />
                             </li>
                         ))
                         }
