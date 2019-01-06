@@ -26,9 +26,9 @@ class BooksApp extends React.Component {
   }
 
   updateQueryResults = (query) => {
-    this.setState({ query: query.trim() });
+    this.setState({ query });
     if (query.length) {
-    BooksAPI.search(query).then((results) => {
+    BooksAPI.search(query.trim()).then((results) => {
       if (results && results.length) {
         this.setState({ results: results.filter(book => book.imageLinks) });      
       } 
