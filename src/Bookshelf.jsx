@@ -10,7 +10,7 @@ export default class Bookshelf extends React.Component {
                 <div className="bookshelf-books">
                     <ol className="books-grid">
                         {books.map(book => (
-                            <li>
+                            <li key={book.title}>
                                 <Book
                                     bookCoverUrl={`url("${book.imageLinks.smallThumbnail}")`}
                                     bookTitle={book.title}

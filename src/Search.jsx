@@ -32,11 +32,11 @@ export default class Search extends React.Component {
                 <div className="search-books-results">
                     <ol className="books-grid">
                         {results.map(book => (
-                            <li>
+                            <li key={book.id}>
                                 <Book
                                     bookCoverUrl={`url("${book.imageLinks.smallThumbnail}")`}
                                     bookTitle={book.title}
-                                    bookAuthors={book.authors} />
+                                    bookAuthors={book.authors.join(', ')} />
                             </li>
                         ))}
                     </ol>
