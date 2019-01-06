@@ -37,10 +37,25 @@ class BooksApp extends React.Component {
       this.setState({ results: [] })
   }}
 
+  displayClick = (e) => {
+    let movedBook = this.state.books.find(function(book) {
+      return book.id === e.bookId;
+    });
+    if (!movedBook) {
+      movedBook = this.state.results.find(function(book) {
+        return book.id === e.bookId;
+      });
+      this.state.books.push(movedBook);      
+    }
+    movedBook.shelf = e.value;
+    this.setState({ books: this.state.books })
+  }
+
     render() {
     const { books } = this.state;
     const { query } = this.state;
     const { results } = this.state;
+    
     return (
       <div className="app">
         <Route exact path="/" render={() => (
@@ -49,7 +64,11 @@ class BooksApp extends React.Component {
               <h1>MyReads</h1>
             </div>
             <div className="list-books-content">
-              <BookshelfList books={books} />
+              <BookshelfList 
+                books={books}
+                displayClick={(e) => {
+                  this.displayClick(e)
+                }} />
             </div>
             <div className="open-search">
               <Link to="/search"><button>Add a book</button></Link>
@@ -62,6 +81,9 @@ class BooksApp extends React.Component {
             results={results}
             onUpdateQueryResults={(query) => {
               this.updateQueryResults(query)
+            }}
+            displayClick={(e) => {
+              this.displayClick(e)
             }}
             />
         )}/>
