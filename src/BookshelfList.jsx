@@ -9,9 +9,9 @@ export default class BookshelfList extends React.Component {
     const read = books.filter(book => book.shelf === "read");
     return (
       <div>
-        <Bookshelf displayClick={displayClick} books={currentlyReading} title="Currently Reading"/>
-        <Bookshelf displayClick={displayClick} books={wantToRead} title="Want to Read"/>
-        <Bookshelf displayClick={displayClick} books={read} title="Read"/>
+        <Bookshelf displayClick={displayClick} books={currentlyReading} title="Currently Reading" />
+        <Bookshelf displayClick={displayClick} books={wantToRead} title="Want to Read" />
+        <Bookshelf displayClick={displayClick} books={read} title="Read" />
       </div>
     )
   }

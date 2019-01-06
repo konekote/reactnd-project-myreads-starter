@@ -3,9 +3,9 @@ import React from 'react'
 export default class BookShelfChanger extends React.Component {
     handleChange(event) {
         const { bookId, displayClick } = this.props;
-        displayClick({bookId: bookId, value:event.target.value});
+        displayClick({ bookId: bookId, value: event.target.value });
     }
-    
+
     render() {
         const { currentShelf } = this.props;
         return (

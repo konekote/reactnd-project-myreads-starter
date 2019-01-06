@@ -28,35 +28,36 @@ class BooksApp extends React.Component {
   updateQueryResults = (query) => {
     this.setState({ query });
     if (query.length) {
-    BooksAPI.search(query.trim()).then((results) => {
-      if (results && results.length) {
-        this.setState({ results: results.filter(book => book.imageLinks) });      
-      } 
-    });
-  } else {
+      BooksAPI.search(query.trim()).then((results) => {
+        if (results && results.length) {
+          this.setState({ results: results.filter(book => book.imageLinks) });
+        }
+      });
+    } else {
       this.setState({ results: [] })
-  }}
+    }
+  }
 
   displayClick = (e) => {
-    let movedBook = this.state.books.find(function(book) {
+    let movedBook = this.state.books.find(function (book) {
       return book.id === e.bookId;
     });
     if (!movedBook) {
-      movedBook = this.state.results.find(function(book) {
+      movedBook = this.state.results.find(function (book) {
         return book.id === e.bookId;
       });
-      this.state.books.push(movedBook);      
+      this.state.books.push(movedBook);
     }
     movedBook.shelf = e.value;
     this.setState({ books: this.state.books });
     BooksAPI.update(movedBook, e.value);
   }
 
-    render() {
+  render() {
     const { books } = this.state;
     const { query } = this.state;
     const { results } = this.state;
-    
+
     return (
       <div className="app">
         <Route exact path="/" render={() => (
@@ -65,7 +66,7 @@ class BooksApp extends React.Component {
               <h1>MyReads</h1>
             </div>
             <div className="list-books-content">
-              <BookshelfList 
+              <BookshelfList
                 books={books}
                 displayClick={(e) => {
                   this.displayClick(e)
@@ -77,7 +78,7 @@ class BooksApp extends React.Component {
           </div>
         )} />
         <Route path="/search" render={() => (
-          <Search 
+          <Search
             query={query}
             results={results}
             onUpdateQueryResults={(query) => {
@@ -86,8 +87,8 @@ class BooksApp extends React.Component {
             displayClick={(e) => {
               this.displayClick(e)
             }}
-            />
-        )}/>
+          />
+        )} />
       </div>
     )
   }

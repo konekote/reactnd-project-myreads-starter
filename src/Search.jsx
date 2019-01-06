@@ -18,7 +18,7 @@ export default class Search extends React.Component {
 
                   However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
                   you don't find a specific author or title. Every search is limited by search terms.
-                */}                        
+                */}
                         <input
                             type="text"
                             placeholder="Search by title or author"

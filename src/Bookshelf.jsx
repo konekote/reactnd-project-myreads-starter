@@ -14,7 +14,7 @@ export default class Bookshelf extends React.Component {
                                 <Book
                                     bookCoverUrl={`url("${book.imageLinks.smallThumbnail}")`}
                                     bookTitle={book.title}
-                                    bookAuthors={book.authors ? book.authors.join(', ') : ''} 
+                                    bookAuthors={book.authors ? book.authors.join(', ') : ''}
                                     bookId={book.id}
                                     displayClick={displayClick}
                                     currentShelf={book.shelf} />

@@ -9,9 +9,9 @@ export default class Book extends React.Component {
         return (
             <div className="book">
                 <div className="book-top">
-                    <div className="book-cover" style={ {width: 128, height: 193, backgroundImage: bookCoverUrl} }></div>
-                    <BookShelfChanger 
-                        bookId={bookId} 
+                    <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: bookCoverUrl }}></div>
+                    <BookShelfChanger
+                        bookId={bookId}
                         currentShelf={currentShelf}
                         displayClick={displayClick} />
                 </div>
