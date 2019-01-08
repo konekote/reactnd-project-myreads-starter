@@ -28,11 +28,23 @@ class BooksApp extends React.Component {
   updateQueryResults = (query) => {
     this.setState({ query });
     if (query.length) {
-      BooksAPI.search(query.trim()).then((results) => {
-        if (results && results.length) {
-          this.setState({ results: results.filter(book => book.imageLinks) });
-        }
-      });
+      BooksAPI.search(query.trim())
+        .then((results) => {
+          if (results.error) {
+            this.setState({ results: [] });
+          }
+          else if (results && results.length) {
+            this.state.books.forEach(book => {
+              const foundBook = results.find(function (result) {
+                return book.id === result.id;
+              });
+              if (foundBook) {
+                foundBook.shelf = book.shelf;
+              }
+              this.setState({ results: results.filter(book => book.imageLinks) });
+            })
+          }
+        });
     } else {
       this.setState({ results: [] })
     }
